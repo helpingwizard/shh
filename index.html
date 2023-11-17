@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    <link rel="stylesheet" type="text/css" href="get-to-know-me.css">
+
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #FF9933;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        /* Add space to the right of the first h1 element */
+        h1:first-child {
+            margin-right: 10px;
+        }
+
+        main {
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background: #d9d9d9;
+            z-index: -1;
+            transition: 0.5s;
+        }
+
+        input:checked + label + .background {
+            background: #242424;
+        }
+
+        input:checked + label + .background {
+            background: #242424;
+        }
+
+        input {
+            display: none;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            .wrapper .icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .wrapper .icon i {
+                font-size: 40px;
+            }
+        }
+
+        .content-section {
+            background-color: #2618a1;
+            padding: 50px;
+        }
+
+        li {
+            margin-bottom: 30px;
+        }
+
+        a.scroll-link {
+            color: #f9fcf9;
+            background-color: #00aa00;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        a.scroll-link:hover {
+            background-color: #012c08;
+        }
+
+        .content-section2 {
+            background-color: #f7f5f7ec;
+            padding: 30px;
+        }
+
+        #about-me h1 {
+            font-size: 40px;
+            color: #333;
+        }
+
+        #about-me p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        #about-me {
+            margin-bottom: 30px;
+        }
+
+        #interests h2 {
+            font-size: 40px;
+            color: #333;
+        }
+
+        #interests p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        #interests {
+            margin-bottom: 30px;
+        }
+
+        #socials h2 {
+            font-size: 40px;
+            color: #333;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 10px;
+        }
+
+        .wrapper .icon {
+            position: relative;
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+
+        .wrapper .icon i {
+            font-size: 40px;
+        }
+
+        .wrapper .tooltip {
+            position: absolute;
+            top: 30px;
+            line-height: 1.5;
+            font-size: 12px;
+            background-color: #ffffff;
+            color: #ffffff;
+            padding: 5px 8px;
+            border-radius: 5px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .wrapper .telegram:hover,
+        .wrapper .telegram:hover .tooltip,
+        .wrapper .telegram:hover .tooltip::before {
+            background-color: #0088cc;
+            color: #ffffff;
+        }
+
+        .wrapper .goodreads:hover,
+        .wrapper .goodreads:hover .tooltip,
+        .wrapper .goodreads:hover .tooltip::before {
+            background-color: #FFD700;
+            color: #ffffff;
+        }
+
+        .wrapper .medium:hover,
+        .wrapper .medium:hover .tooltip,
+        .wrapper .medium:hover .tooltip::before {
+            background-color: #02b875;
+            color: #ffffff;
+        }
+
+        .wrapper .spotify:hover,
+        .wrapper .spotify:hover .tooltip,
+        .wrapper .spotify:hover .tooltip::before {
+            background-color: #1DB954;
+            color: #ffffff;
+        }
+
+        .wrapper .twitter:hover,
+        .wrapper .twitter:hover .tooltip,
+        .wrapper .twitter:hover .tooltip::before {
+            background-color: #46c1f6;
+            color: #ffffff;
+        }
+
+        .wrapper .instagram:hover,
+        .wrapper .instagram:hover .tooltip,
+        .wrapper .instagram:hover .tooltip::before {
+            background-color: #F56040;
+            color: #ffffff;
+        }
+
+        .wrapper .github:hover,
+        .wrapper .github:hover .tooltip,
+        .wrapper .github:hover .tooltip::before {
+            background-color: #24292e;
+            color: #ffffff;
+        }
+
+        .wrapper .youtube:hover,
+        .wrapper .youtube:hover .tooltip,
+        .wrapper .youtube:hover .tooltip::before {
+            background-color: #FF0000;
+            color: #ffffff;
+        }
+
+        footer {
+            background-color: #FF2E63;
+            color: #fff;
+            text-align: flex;
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 16px;
+        }
+
+        .footer-content {
+            max-width: 999px;
+            margin: 20px auto;
+        }
+
+        .footer-content a {
+            color: FF2E63(106, 59, 160);
+            text-decoration: underline;
+        }
+
+        .footer-content a:hover {
+            color: rgb(33, 14, 139);
+        }
+    </style>
+
+    <title>Get to know me</title>
+</head>
+<body>
+    <!-- Your existing HTML content goes here -->
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="get-to-know-me.css">
+    <title>Get to know me</title>
+    <style>
+        /* Your additional styles here */
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="dark-mode">
+    <label for="dark-mode">Dark Mode</label>
+    <div class="background"></div>
+
+    <header>
+        <h1>Learner.</h1>
+    </header>
+    <section class="content-section">
+        <ul>
+            <li><a href="#about-me" class="scroll-link">About Me</a></li>
+            <li><a href="#interests" class="scroll-link">Interests</a></li>
+            <li><a href="#socials" class="scroll-link">Socials</a></li>
+        </ul>
+    </section>
+    <section class="content-section2">
+
+        <section id="about-me">
+            <h1>Hello</h1>
+            <p>I am Shreesh. I am currently a student at [Your School]. I come from CSN, Maharashtra. 
+                Currently, I am studying [Your Course].
+                Also, I am working on [Your Project] as a side project.
+                If you feel like chatting, just send me a DM on Instagram. It's the easiest way to reach me!</p>
+        </section>
+    
+        <section id="interests">
+            <h2>Interests</h2>
+            <p>Besides school stuff, I'm into a bunch of other things. I love talking to people and getting to know them. I also like traveling to different places.
+            I'm a big music fan too. Feel free to check out my Spotify and see if our music tastes align.
+            I am an avid reader and read all sorts of books.
+            Check out my Goodreads profile to see the books I have read or am reading.</p>
+        </section>
+
+        <section class="content-section3">
+            <section id="socials">
+                <h2>Socials</h2>
+                <div class="wrapper">
+                    <a href="https://goodreads.com/shreeshpathak" class="icon goodreads">
+                        <div class="tooltip">Goodreads</div>
+                        <span><i class="fa-brands fa-goodreads-g"></i></span>
+                    </a>
+ <a href="https://open.spotify.com/user/31mq2qr545npj52tkyyaydhbkfni?si=v_9vjJ4xRSycYiwK7Wm-FQ" class="icon spotify">
+          <div class="tooltip">Spotify</div>
+          <span><i class="fa-brands fa-spotify"></i></span>
+        </a>
+                    <!-- Add more social media links here -->
+                </div>
+            </section>
+        </section>
+
+    </section>
+</body>
+</html>
